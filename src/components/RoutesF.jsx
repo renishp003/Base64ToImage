@@ -1,4 +1,3 @@
-import React from 'react'
 import {  Routes, Route } from "react-router-dom";
 import Base64ToImage from './Base64ToImage';
 import Header from './Header';

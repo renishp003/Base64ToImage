@@ -1,20 +1,14 @@
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css'
-
-
-import Base64ToImage from './components/Base64ToImage'
-import Header from './components/Header';
-import RoutesF from './components/RoutesF';
+import RoutesF from "./components/RoutesF";
 
 function App() {
-  
-
   return (
     <>
-<RoutesF/>
-     </>
-  )
+      <RoutesF />
+    </>
+  );
 }
 
-export default App
+export default App;

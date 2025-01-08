@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
+import {  toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 
 function Base64ToImage() {
   const [base64, setBase64] = useState("");
   const [imageSrc, setImageSrc] = useState("");
   const [error, setError] = useState("");
+  
   
 
   const handleBase64Change = (event) => {
@@ -40,39 +43,58 @@ function Base64ToImage() {
       );
     }
   };
-
+  
 
 const copyStr = ()=>{
-    navigator.clipboard.writeText(base64)
+  if(base64 === ''){
+    toast.error("Nothing To Copy");
+
+  }
+  else if(navigator.clipboard.writeText(base64)){
+    toast.success("Copied to Clipboard");
+  }
     
 }
-  const downloadImage = async () => {
-    try {
-      if(imageSrc !== ''){
-      const image = await fetch(imageSrc);
-  
-      const nameSplit = imageSrc.split("/");
-      const  duplicateName = nameSplit.pop();
-  
-      const imageBlog = await image.blob()
-      const imageURL = URL.createObjectURL(imageBlog)
-      const link = document.createElement('a')
-      link.href = imageURL;
-      link.download = "" + duplicateName + "";
-      document.body.appendChild(link)
-      link.click()
-      document.body.removeChild(link)}else{
-        setError(
-          "There is No Image to Download"
-        );
+const downloadImage = async () => {
+  try {
+      if (imageSrc) {
+          
+          toast.info("Downloading...");
+
+          
+          const response = await fetch(imageSrc);
+          if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+          const imageBlob = await response.blob();
+          const fileName =  "downloaded_image";
+
+          
+          const imageURL = URL.createObjectURL(imageBlob);
+          const link = document.createElement("a");
+          link.href = imageURL;
+          link.download = fileName;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+
+          
+          URL.revokeObjectURL(imageURL);
+
+      } else {
+          setError("There is no image to download.");
       }
-    } catch (error) {
-        console.error('Error downloading the image:', error);
-    }
+  } catch (error) {
+      console.error("Error downloading the image:", error);
+      toast.error("Failed to download the image.");
+  }
 };
 
+
   return (
-   <>
+   <><ToastContainer
+   autoClose={3000}
+   hideProgressBar={true}
+  
+/>
      <Container w-75>
       <Row className="shadow">
         <Col className="d-flex justify-content-center align-items-center flex-column" xxl={12} xl={12} lg={12} md={12} sm={12} xs={12}>
