@@ -11,8 +11,8 @@ function Header() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link as={Link} to='/base64-to-image' >Base64 to Image</Nav.Link>
-            <Nav.Link as={Link} to='/base64-to-image'>Image to Base64</Nav.Link>
+            <Nav.Link as={Link} to='/' >Base64 to Image</Nav.Link>
+            <Nav.Link as={Link} to='/image-to-base64'>Image to Base64</Nav.Link>
             
           </Nav>
         </Navbar.Collapse>
