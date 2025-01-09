@@ -1,4 +1,4 @@
-import  { useCallback } from "react";
+import  { useCallback, useEffect } from "react";
 import { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -11,6 +11,9 @@ import { toast, ToastContainer } from "react-toastify";
 
 
 const ImageToBase64 = () => {
+  useEffect(() => {
+      document.title = 'ImageToBase64';
+    }, []);
   const [file, setFile] = useState(null);
   const [base64, setBase64] = useState("");
   const [error, setError] = useState("");

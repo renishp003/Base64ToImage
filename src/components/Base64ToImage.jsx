@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -9,6 +9,9 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function Base64ToImage() {
+  useEffect(() => {
+    document.title = 'Base64ToImage';
+  }, []);
   const [base64, setBase64] = useState("");
   const [imageSrc, setImageSrc] = useState("");
   const [error, setError] = useState("");
