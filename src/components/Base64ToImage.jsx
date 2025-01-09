@@ -60,14 +60,10 @@ const downloadImage = async () => {
       if (imageSrc) {
           
           toast.info("Downloading...");
-
-          
           const response = await fetch(imageSrc);
           if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
           const imageBlob = await response.blob();
           const fileName =  "downloaded_image";
-
-          
           const imageURL = URL.createObjectURL(imageBlob);
           const link = document.createElement("a");
           link.href = imageURL;
