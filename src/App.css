@@ -33,3 +33,6 @@
   outline: none;
   transition: border .24s ease-in-out;
 }
+.test{
+  border: 1px solid black;
+}

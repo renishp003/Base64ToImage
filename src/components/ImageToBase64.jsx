@@ -35,7 +35,6 @@ const [error, setError] = useState('')
     reader.readAsDataURL(file)
 
     reader.onload = () => {
-      console.log('called: ', reader)
       setBase64(reader.result)
     }
     }else{
@@ -78,10 +77,10 @@ const [error, setError] = useState('')
       {isDragActive ? (
         <p>Drop the file here ...</p>
       ) : (
-        <p>Drag 'n' drop a file here, or click to select one</p>
+        <p>Drag &apos;n&apos; drop a file here, or click to select one</p>
       )}
       {file && (
-        <div >
+        <div className='d-flex justify-content-center align-items-center flex-column'>
           <h4>File Preview:</h4>
           <p>File Name: {file.name}</p>
           <p>File Size: {(file.size / 1024).toFixed(2)} KB</p>
